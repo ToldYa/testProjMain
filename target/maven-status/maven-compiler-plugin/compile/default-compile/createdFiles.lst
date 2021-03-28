@@ -1,7 +1,5 @@
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantResponse$RegisterPlantResponseBuilder.class
-com/vesa/testprojmain/controller/MyController.class
 com/vesa/testprojmain/domain/Plant$Builder.class
-com/vesa/testprojmain/domain/Plant$1.class
 com/vesa/testprojmain/Application.class
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantResponse.class
 com/vesa/testprojmain/domain/FunctionExecutionStatus.class
@@ -11,6 +9,7 @@ com/vesa/testprojmain/domain/FunctionExecutionStatus$Status.class
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantProcedure.class
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantRequest.class
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantRequest$Builder.class
+com/vesa/testprojmain/controller/RegisterPlantController.class
 com/vesa/testprojmain/procedure/register/plant/RegisterPlantProcedureBatch.class
 com/vesa/testprojmain/domain/Season.class
 com/vesa/testprojmain/domain/FunctionExecutionStatus$Builder.class

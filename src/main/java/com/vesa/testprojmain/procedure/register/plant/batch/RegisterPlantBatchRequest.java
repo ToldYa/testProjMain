@@ -1,28 +1,27 @@
-package com.vesa.testprojmain.domain;
+package com.vesa.testprojmain.procedure.register.plant.batch;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.vesa.testprojmain.domain.Plant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.List;
 
+@JsonDeserialize(builder = RegisterPlantBatchRequest.Builder.class)
 @JsonPropertyOrder({
-        "name",
-        "seasons"
+        "plants"
 })
-@JsonDeserialize(builder = Plant.Builder.class)
 @Builder(builderClassName = "Builder", toBuilder = true)
 @Getter
 @AllArgsConstructor
-public class Plant {
+public class RegisterPlantBatchRequest {
 
-    @JsonProperty("name")
-    private String name;
-
-    @JsonProperty("seasons")
-    private List<Season> seasons;
+    @NonNull
+    @JsonProperty("plants")
+    private List<Plant> plants;
 
 }

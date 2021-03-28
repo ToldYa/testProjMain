@@ -1,15 +1,10 @@
 package com.vesa.testprojmain.service;
 
-//import org.springframework.stereotype.Service;
-
 import com.vesa.testprojmain.domain.Plant;
+import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 public class PlantService {
-
-    public PlantService() {
-
-    }
 
     public void registerPlant(final Plant plant) {
 

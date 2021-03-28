@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.vesa.testprojmain.domain.Plant;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NonNull;
 
 @JsonDeserialize(builder = RegisterPlantRequest.Builder.class)
 @JsonPropertyOrder({
         "plant"
 })
-@Data
+@Getter
 @Builder(builderClassName = "Builder", toBuilder = true)
 public class RegisterPlantRequest {
 

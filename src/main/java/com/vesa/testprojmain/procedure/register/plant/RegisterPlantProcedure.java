@@ -1,20 +1,21 @@
 package com.vesa.testprojmain.procedure.register.plant;
 
-import com.vesa.testprojmain.AbstractProcedure;
+import com.vesa.testprojmain.BaseProcedure;
 import com.vesa.testprojmain.domain.FunctionExecutionStatus;
 import com.vesa.testprojmain.domain.FunctionExecutionStatus.Status;
 import com.vesa.testprojmain.domain.Plant;
 
-public class RegisterPlantProcedure extends AbstractProcedure<RegisterPlantRequest, RegisterPlantResponse> {
+public class RegisterPlantProcedure extends BaseProcedure<RegisterPlantRequest, RegisterPlantResponse> {
 
     public RegisterPlantProcedure(final RegisterPlantRequest request) {
         super(request);
         procRequest = request;
     }
 
+    @Override
     public void execute() {
         try {
-            plantService.registerPlant(Plant.builder()
+            appServices.getPlantService().registerPlant(Plant.builder()
                     .name(procRequest.getPlant().getName())
                     .seasons(procRequest.getPlant().getSeasons())
                     .build());

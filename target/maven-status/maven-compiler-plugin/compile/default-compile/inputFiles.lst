@@ -1,4 +1,3 @@
-/home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/controller/MyController.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/domain/Plant.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/AbstractProcedure.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/procedure/register/plant/RegisterPlantProcedureBatch.java
@@ -8,5 +7,6 @@
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/domain/Season.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/service/PlantService.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/procedure/register/plant/RegisterPlantProcedure.java
+/home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/controller/RegisterPlantController.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/Application.java
 /home/vesaemil/projects/testProjMain/src/main/java/com/vesa/testprojmain/util/StrUtil.java
