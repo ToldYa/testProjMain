@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class RegisterPlantProcedureTest extends PlantTestBase {
 
+    private final static String CUSTOMER_ID = "cust";
+
     private RegisterPlantRequest request;
     private RegisterPlantResponse response;
 
@@ -37,7 +39,7 @@ public class RegisterPlantProcedureTest extends PlantTestBase {
                         .build())
                 .build();
 
-        procedure = new RegisterPlantProcedure(request);
+        procedure = new RegisterPlantProcedure(CUSTOMER_ID, request);
         procedure.executeProcedure();
 
         response = procedure.getProcResponse();

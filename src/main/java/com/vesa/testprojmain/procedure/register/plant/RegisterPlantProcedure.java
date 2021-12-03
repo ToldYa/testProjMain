@@ -4,18 +4,23 @@ import com.vesa.testprojmain.BaseProcedure;
 import com.vesa.testprojmain.domain.FunctionExecutionStatus;
 import com.vesa.testprojmain.domain.FunctionExecutionStatus.Status;
 import com.vesa.testprojmain.domain.Plant;
+import com.vesa.testprojmain.exception.BadRequestException;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 
-public class RegisterPlantProcedure extends BaseProcedure<RegisterPlantRequest, RegisterPlantResponse> {
+import com.vesa.testprojmain.util.StrUtil;
 
-    public RegisterPlantProcedure(final RegisterPlantRequest request) {
-        super(request);
-        procRequest = request;
+@Log4j2
+public final class RegisterPlantProcedure extends BaseProcedure<RegisterPlantRequest, RegisterPlantResponse> {
+
+    public RegisterPlantProcedure(final String customerId, final RegisterPlantRequest request) {
+        super(request, customerId);
     }
 
     @Override
     public void execute() {
         try {
-            appServices.getPlantService().registerPlant(Plant.builder()
+            plantService.registerPlant(Plant.builder()
                     .name(procRequest.getPlant().getName())
                     .seasons(procRequest.getPlant().getSeasons())
                     .build());
@@ -34,6 +39,14 @@ public class RegisterPlantProcedure extends BaseProcedure<RegisterPlantRequest, 
                     .build();
         }
 
+    }
+
+    @SneakyThrows
+    @Override
+    public void validateRequest() {
+        if (StrUtil.nullOrEmpty(procRequest.getPlant().getName())) {
+            throw new BadRequestException("Plant name must be provided in request");
+        }
     }
 
     protected void buildSuccessfulResponse() {

@@ -8,16 +8,15 @@ import com.vesa.testprojmain.procedure.register.plant.RegisterPlantResponse;
 
 public class RegisterPlantBatchProcedure extends BaseProcedure<RegisterPlantBatchRequest, RegisterPlantResponse> {
 
-    public RegisterPlantBatchProcedure(final RegisterPlantBatchRequest request) {
-        super(request);
-        procRequest = request;
+    public RegisterPlantBatchProcedure(final String customerId, final RegisterPlantBatchRequest request) {
+        super(request, customerId);
     }
 
     @Override
     public void execute() {
         procRequest.getPlants().forEach(plant -> {
             try {
-                appServices.getPlantService().registerPlant(Plant.builder()
+                plantService.registerPlant(Plant.builder()
                         .name(plant.getName())
                         .seasons(plant.getSeasons())
                         .build());
@@ -39,7 +38,6 @@ public class RegisterPlantBatchProcedure extends BaseProcedure<RegisterPlantBatc
 
 
     }
-
 
     protected void buildSuccessfulResponse() {
         this.procResponse = RegisterPlantResponse.builder()
