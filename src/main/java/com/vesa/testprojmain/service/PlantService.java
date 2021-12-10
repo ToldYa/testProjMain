@@ -6,6 +6,7 @@ import io.github.resilience4j.bulkhead.BulkheadConfig;
 import io.github.resilience4j.bulkhead.internal.SemaphoreBulkhead;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+import io.github.resilience4j.decorators.Decorators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -13,7 +14,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 @Service
 public class PlantService {
 
-    private PlantRepository repository;
+    private final PlantRepository repository;
     private SemaphoreBulkhead bulkhead;
     private CircuitBreaker circuitBreaker;
 
@@ -34,14 +35,18 @@ public class PlantService {
     private void initCircuitBreaker() {
         final CircuitBreakerConfig config = CircuitBreakerConfig.custom()
                 .failureRateThreshold(50)
-                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.TIME_BASED)
+                .minimumNumberOfCalls(4)
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
                 .build();
         circuitBreaker = CircuitBreaker.of("PlantServiceCircuitBreaker", config);
     }
 
     public void registerPlant(final Plant plant) {
-        // TODO: locate Decorators deoendency for: io.github.resilience4j.decorators
-        repository.registerPlant(plant);
+        Decorators.ofRunnable(() -> repository.registerPlant(plant))
+                .withBulkhead(bulkhead)
+                .withCircuitBreaker(circuitBreaker)
+                .decorate()
+                .run();
     }
 
     public void removePlant() {
